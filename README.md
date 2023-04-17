@@ -128,9 +128,3 @@ O objetivou foi completado, além disso, filtros foram adicionados no dashboard,
 3. Adicionar novas visões de negócios.
 4. No mapa da Visão Geral, ajustar o mapa para que o mesmo agrupe os restaurantes por país e por cidade.
 5. Adicionar um ícone no sidebar para o download dos dados tratados.
-
-
-
-
-
-
