@@ -231,7 +231,7 @@ df1 = df1.loc[df1['cuisines'].isin(cuisines_op),:]
 # ===========================================================================
 #Layout no Streamlit
 #==========================================================================
-st.markdown('# 🍽️ Visão Tipos de Cusinhas')
+st.markdown('# 🍽️ Visão Tipos de Culinárias')
 st.markdown('## Melhores Restaurantes dos Principais tipos Culinários')
 
 #Primeiro container dividio em 5 colunas
