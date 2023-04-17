@@ -112,6 +112,18 @@ Média Prato para dois: {re1.iloc[0,3]} {re1.iloc[0,4]}'''
 
 
 
+def top_dataframe(df1):
+    dataframe = df1.loc[df1['aggregate_rating'] == df1['aggregate_rating'].max(),['restaurant_id', 'restaurant_name', 'country_code', 'city','cuisines','average_cost_for_two','aggregate_rating','votes']].sort_values(by='restaurant_id',ascending=True)
+    dataframe['restaurant_id'] = df1.loc[:, 'restaurant_id'].apply(lambda x: "{0:>20}".format(x))
+    dataframe['votes'] = df1.loc[:, 'votes'].apply(lambda x: "{0:>20}".format(x))
+    dataframe.columns = ['ID Restaurante', 'Nome do Restaurante', 'País', 'Cisade','Culinária','Média do preço de um prato para dois','Avaliação média','Qtde de votos']
+    return dataframe
+
+
+
+
+
+
 def bar_1(df1,data_slider):
     graf1 = round(df3.loc[:,['cuisines','aggregate_rating']].groupby(['cuisines']).mean().sort_values(by='aggregate_rating',ascending=False).reset_index(),2)
     graf1 = px.bar(graf1.head(data_slider), x='cuisines',y='aggregate_rating',text_auto=True,labels={'cuisines':'Tipo de Culinária','aggregate_rating':'Média da Avaliação Média'},title=f'Top {data_slider} Melhores Tipos de Culiárias')
@@ -250,8 +262,7 @@ with st.container():
 #Segundo container com o DataFrame
 with st.container():
     st.markdown(f'## Top {data_slider} Restaurantes')
-    dataframe = df1.loc[df1['aggregate_rating'] == df1['aggregate_rating'].max(),['restaurant_id', 'restaurant_name', 'country_code', 'city','cuisines','average_cost_for_two','aggregate_rating','votes']].sort_values(by='restaurant_id',ascending=True)
-    dataframe.columns = ['ID Restaurante', 'Nome do Restaurante', 'País', 'Cisade','Culinária','Média do preço de um prato para dois','Avaliação média','Qtde de votos']
+    dataframe = top_dataframe(df1)
     st.dataframe(dataframe.head(data_slider))
     
     
