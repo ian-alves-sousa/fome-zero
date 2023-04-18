@@ -104,14 +104,17 @@ def ajuste_votes(df1):
 
 def restaurantes_map(df1):
     re6 = df1.loc[:,['restaurant_name','average_cost_for_two','currency','aggregate_rating','country_code','city','cuisines','latitude','longitude']]
-    map = folium.Map()
+    map = folium.Map(location=[0, 0],zoom_start=2)
+    marker_cluster = folium.plugins.MarkerCluster().add_to(map)
     for index,location in re6.iterrows():
         folium.Marker([location['latitude'],location['longitude']],
                     popup=folium.Popup(f'''<h6><b>{location['restaurant_name']}</b></h6>
                     <h6>Preço: {location['average_cost_for_two']} ({location['currency']}) para dois <br>
                     Culinária: {location['cuisines']} <br>
                     Avaliação: {location['aggregate_rating']}/5.0</h6>''',
-                                      max_width = 250)).add_to(map)
+                    max_width=300,min_width=150),
+                    tooltip=location["restaurant_name"],
+                    icon=folium.Icon(color='green', icon='home', prefix='fa')).add_to(marker_cluster)
 
     folium_static(map,width=1024,height=600)
     ### Lembrar de definir os agrupamentos dos países
