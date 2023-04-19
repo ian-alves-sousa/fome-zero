@@ -10,7 +10,9 @@ import folium
 import inflection
 
 st.set_page_config(
-    page_title='Main Page',page_icon='📊', layout='wide')
+    page_title='Main Page',page_icon='📊', layout='wide',initial_sidebar_state="expanded")
+
+
 
 # ===========================================================================
 #Funções
